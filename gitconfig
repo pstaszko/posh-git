@@ -1,0 +1,38 @@
+;MyFile
+;[include]
+;	path = ..\\gitconfig
+
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+	hideDotFiles = dotGitOnly
+	autocrlf = false
+
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[push]
+	default = matching
+
+[diff]
+    ;tool = winmerge
+    tool = diffmerge
+
+[difftool]
+	tool = winmerge
+	prompt = false
+[difftool "winmerge"]
+    cmd = "'C:/Dropbox/PortableApps/WinMergePortable/WinMergePortable.exe'" -e "$LOCAL" "$REMOTE"
+
+[difftool "diffmerge"]
+	cmd = 'C:/Program Files/SourceGear/Common/DiffMerge/sgdm.exe' \"$LOCAL\" \"$REMOTE\"
+	 
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	trustExitCode = true
+	cmd = "'C:/Program Files/SourceGear/Common/DiffMerge/sgdm.exe'" --merge --result="$MERGED" "$LOCAL" "$(if test -f "$BASE"; then echo "$BASE"; else echo "$LOCAL"; fi)" "$REMOTE"
