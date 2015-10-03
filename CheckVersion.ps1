@@ -1,4 +1,4 @@
-$Global:GitMissing = $false
+﻿$Global:GitMissing = $false
 
 if (!(Get-Command git -TotalCount 1 -ErrorAction SilentlyContinue)) {
     Write-Warning "git command could not be found. Please create an alias or add it to your PATH."

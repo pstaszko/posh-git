@@ -1,4 +1,4 @@
-Push-Location (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent)
+﻿Push-Location (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent)
 
 # Load posh-git module from current directory
 Import-Module .\posh-git
