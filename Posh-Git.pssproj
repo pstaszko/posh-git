@@ -27,9 +27,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Script.ps1" />
+    <Compile Include="CheckVersion.ps1" />
+    <Compile Include="GitPrompt.ps1" />
+    <Compile Include="GitTabExpansion.ps1" />
+    <Compile Include="GitUtils.ps1" />
+    <Compile Include="install.ps1" />
+    <Compile Include="posh-git.psm1" />
+    <Compile Include="profile.example.ps1" />
+    <Compile Include="TortoiseGit.ps1" />
+    <Compile Include="Utils.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
