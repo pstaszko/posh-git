@@ -1,4 +1,4 @@
-# General Utility Functions
+﻿# General Utility Functions
 
 function Invoke-NullCoalescing {
     $result = $null

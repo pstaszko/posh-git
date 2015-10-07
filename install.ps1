@@ -1,4 +1,4 @@
-param([switch]$WhatIf = $false)
+﻿param([switch]$WhatIf = $false)
 
 if($PSVersionTable.PSVersion.Major -lt 2) {
     Write-Warning "posh-git requires PowerShell 2.0 or better; you have version $($Host.Version)."
