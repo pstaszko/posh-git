@@ -66,4 +66,3 @@ try {
   Write-ChocolateyFailure 'poshgit' $($_.Exception.Message)
   throw
 }
-
