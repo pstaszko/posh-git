@@ -169,16 +169,17 @@ function Get-GitStatus($gitDir = (Get-GitDirectory)) {
         dbg 'Building status object' $sw
         $indexPaths = $indexAdded + $indexModified + $indexDeleted + $indexUnmerged
         $workingPaths = $filesAdded + $filesModified + $filesDeleted + $filesUnmerged
+		
         $index = New-Object PSObject @(,@($indexPaths | ?{ $_ } | Select -Unique)) |
-            Add-Member -PassThru NoteProperty Added    $indexAdded |
-            Add-Member -PassThru NoteProperty Modified $indexModified |
-            Add-Member -PassThru NoteProperty Deleted  $indexDeleted |
-            Add-Member -PassThru NoteProperty Unmerged $indexUnmerged
+            Add-Member -PassThru NoteProperty Added    $indexAdded -Force |
+            Add-Member -PassThru NoteProperty Modified $indexModified -Force|
+            Add-Member -PassThru NoteProperty Deleted  $indexDeleted -Force|
+            Add-Member -PassThru NoteProperty Unmerged $indexUnmerged -Force
         $working = New-Object PSObject @(,@($workingPaths | ?{ $_ } | Select -Unique)) |
-            Add-Member -PassThru NoteProperty Added    $filesAdded |
-            Add-Member -PassThru NoteProperty Modified $filesModified |
-            Add-Member -PassThru NoteProperty Deleted  $filesDeleted |
-            Add-Member -PassThru NoteProperty Unmerged $filesUnmerged
+            Add-Member -PassThru NoteProperty Added    $filesAdded -Force|
+            Add-Member -PassThru NoteProperty Modified $filesModified -Force|
+            Add-Member -PassThru NoteProperty Deleted  $filesDeleted -Force|
+            Add-Member -PassThru NoteProperty Unmerged $filesUnmerged -Force
 
         $result = New-Object PSObject -Property @{
             GitDir          = $gitDir
