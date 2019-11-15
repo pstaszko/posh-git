@@ -302,34 +302,7 @@ function Guess-Ssh($program = 'ssh-agent') {
 
 # Loosely based on bash script from http://help.github.com/ssh-key-passphrases/
 function Start-SshAgent([switch]$Quiet) {
-    [int]$agentPid = Get-SshAgent
-    if ($agentPid -gt 0) {
-        if (!$Quiet) {
-            $agentName = Get-Process -Id $agentPid | Select -ExpandProperty Name
-            if (!$agentName) { $agentName = "SSH Agent" }
-            Write-Host "$agentName is already running (pid $($agentPid))"
-        }
-        return
-    }
-
-    if ($env:GIT_SSH -imatch 'plink') {
-        Write-Host "GIT_SSH set to $($env:GIT_SSH), using Pageant as SSH agent."
-        $pageant = Get-Command pageant -TotalCount 1 -Erroraction SilentlyContinue
-        $pageant = if ($pageant) {$pageant} else {Guess-Pageant}
-        if (!$pageant) { Write-Warning "Could not find Pageant."; return }
-        Start-Process -NoNewWindow $pageant
-    } else {
-        $sshAgent = Get-Command ssh-agent -TotalCount 1 -ErrorAction SilentlyContinue
-        $sshAgent = if ($sshAgent) {$sshAgent} else {Guess-Ssh('ssh-agent')}
-        if (!$sshAgent) { Write-Warning 'Could not find ssh-agent'; return }
-
-        & $sshAgent | foreach {
-            if($_ -match '(?<key>[^=]+)=(?<value>[^;]+);') {
-                setenv $Matches['key'] $Matches['value']
-            }
-        }
-    }
-    Add-SshKey
+    
 }
 
 function Get-SshPath($File = 'id_rsa')
